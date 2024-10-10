@@ -1,20 +1,13 @@
 package vn.hoidanit.laptopshop.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class UserService {
-    private UserService userService;
     
-
-    public UserService(UserService userService) {
-        this.userService = userService;
+    public String handlHello()
+    {
+        return "hello page handle";
     }
 
-
-    @GetMapping("")
-    public String getHandlHello(){
-        return this.userService.getHandlHello();
-    }
 }
