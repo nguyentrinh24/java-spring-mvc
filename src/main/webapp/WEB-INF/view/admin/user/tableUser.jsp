@@ -31,29 +31,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="user" items="${users}">
+                            <c:forEach var="users" items="${arrUser}">
                                 <tr>
-                                    <th scope="row">${user.id}</th>
-                                    <td>${user.email}</td>
-                                    <td>${user.fullName}</td>
+                                    <th scope="row">${users.id}</th>
+                                    <td>${users.email}</td>
+                                    <td>${users.fullName}</td>
                                     <td>
-                                        <a href="/admin/user/${user.id}">
-                                            <button type="button" class="btn btn-success">View</button>
-                                        </a>
-                                        <a href="/admin/user/update/${user.id}">
-                                            <button type="button" class="btn btn-warning">Update</button>
-                                        </a>
-                                        <a href="/admin/user/delete/${user.id}">
-                                            <button type="button" class="btn btn-danger">Delete</button>
-                                        </a>
+                                        <a href="/admin/user/${users.id}" type="button" class="btn btn-success">View</a>
+                                        <a href="/admin/user/update/${users.id}" type="button"
+                                            class="btn btn-warning">Update</a>
+                                        <a href="/admin/user/delete/${users.id}" type="button"
+                                            class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>
-                            <c:if test="${empty users}">
-                                <tr>
-                                    <td colspan="4" class="text-center">No users found.</td>
-                                </tr>
-                            </c:if>
+
                         </tbody>
                     </table>
                 </div>

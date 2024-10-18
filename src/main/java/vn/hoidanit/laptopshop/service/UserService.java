@@ -1,6 +1,7 @@
 package vn.hoidanit.laptopshop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class UserService {
         this.userReponsitory = userReponsitory;
     }
 
-    public user handleUser(user creatUser) {
+    public user handleSaveUser(user creatUser) {
         return userReponsitory.save(creatUser);
     }
 
@@ -25,6 +26,14 @@ public class UserService {
 
     public List<user> findAll() {
         return userReponsitory.findAll();
+    }
+
+    public Optional<user> getUsersById(Long id) {
+        return userReponsitory.findById(id);
+    }
+
+    public void deleteUsers(long id) {
+        this.userReponsitory.deleteById(id);
     }
 
 }
