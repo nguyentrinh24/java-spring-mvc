@@ -2,8 +2,6 @@ package vn.hoidanit.laptopshop.controller;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.hibernate.internal.util.collections.ConcurrentReferenceHashMap.Option;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import vn.hoidanit.laptopshop.domain.user;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
