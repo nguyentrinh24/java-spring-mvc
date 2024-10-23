@@ -10,24 +10,27 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
 
-@Entity
-@Table(name = "users")
+@Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
+@Table(name = "users") // Chỉ định bảng "users" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
 public class user {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Đánh dấu thuộc tính này là khóa chính của bảng
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
+                                                        // (auto increment)
     Long id;
+
     String email, passWord, fullName, address, phone, avatar;
 
-    // rolde ID
-    // user - many => one -role
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    // Mối quan hệ: nhiều user có thể có một role (ManyToOne)
+    @ManyToOne // Thiết lập mối quan hệ nhiều user - một role
+    @JoinColumn(name = "role_id") // Khóa ngoại `role_id` trong bảng `users` ánh xạ đến `role` trong bảng `roles`
     private role Role;
 
-    // user - one => many - order
-    @OneToMany(mappedBy = "users")
+    // Mối quan hệ: một user có thể có nhiều order (OneToMany)
+    @OneToMany(mappedBy = "users") // Thiết lập mối quan hệ một user - nhiều order, ánh xạ thông qua thuộc tính
+                                   // `users` trong class `order`
     Set<order> orders;
 
+    // Các getter, setter và phương thức khác
     public void setId(Long id) {
         this.id = id;
     }

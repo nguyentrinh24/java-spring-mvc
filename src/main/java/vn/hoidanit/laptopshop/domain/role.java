@@ -9,18 +9,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "roles")
+@Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
+@Table(name = "roles") // Chỉ định bảng "roles" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
 public class role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Đánh dấu thuộc tính này là khóa chính của bảng
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
+                                                        // (auto increment)
     private long id;
+
     private String name, description;
 
-    // role -one => many -user
-    @OneToMany(mappedBy = "Role")
+    // Mối quan hệ: một role có thể gán cho nhiều user (OneToMany)
+    @OneToMany(mappedBy = "Role") // Thiết lập mối quan hệ một role - nhiều user, ánh xạ thông qua thuộc tính
+                                  // `Role` trong lớp `user`
     Set<user> users;
 
+    // Các getter, setter và phương thức khác
     public long getId() {
         return id;
     }

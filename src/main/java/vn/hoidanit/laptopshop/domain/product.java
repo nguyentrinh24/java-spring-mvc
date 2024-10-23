@@ -6,16 +6,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "products")
+@Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
+@Table(name = "products") // Chỉ định bảng "products" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
 public class product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Đánh dấu thuộc tính này là khóa chính của bảng
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
+                                                        // (auto increment)
     private long id;
+
     private long quanity, sold;
     private double price;
     private String name, image, detailDesc, shortDesc, factory, target;
 
+    // Các getter, setter và phương thức khác
     @Override
     public String toString() {
         return "product [id=" + id + ", quanity=" + quanity + ", sold=" + sold + ", price=" + price + ", name=" + name
