@@ -30,6 +30,22 @@ public class user {
                                    // `users` trong class `order`
     Set<order> orders;
 
+    public role getRole() {
+        return Role;
+    }
+
+    public void setRole(role role) {
+        Role = role;
+    }
+
+    public Set<order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<order> orders) {
+        this.orders = orders;
+    }
+
     // Các getter, setter và phương thức khác
     public void setId(Long id) {
         this.id = id;
@@ -67,12 +83,6 @@ public class user {
         return avatar;
     }
 
-    @Override
-    public String toString() {
-        return "user [id=" + id + ", email=" + email + ", passWord=" + passWord + ", fullName=" + fullName
-                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
-    }
-
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
@@ -91,6 +101,12 @@ public class user {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "user [id=" + id + ", email=" + email + ", passWord=" + passWord + ", fullName=" + fullName
+                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
 
 }
