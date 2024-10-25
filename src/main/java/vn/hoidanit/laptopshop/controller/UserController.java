@@ -6,17 +6,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import vn.hoidanit.laptopshop.domain.role;
 import vn.hoidanit.laptopshop.domain.user;
 import vn.hoidanit.laptopshop.repository.UserReponsitory;
+import vn.hoidanit.laptopshop.repository.RoleRepository;
 import vn.hoidanit.laptopshop.service.UploadService;
 import vn.hoidanit.laptopshop.service.UserService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.servlet.ServletContext;
 
 @Controller
 public class UserController {
@@ -24,11 +26,19 @@ public class UserController {
     // Khai báo đối tượng UserService để xử lý logic nghiệp vụ
     private final UserService userService;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
     // Constructor để tiêm phụ thuộc (UserService và UserRepository)
-    public UserController(UserService userService, UserReponsitory userReponsitory, UploadService uploadService) {
+    public UserController(UserService userService,
+            UserReponsitory userReponsitory,
+            UploadService uploadService,
+            PasswordEncoder passwordEncoder,
+            RoleRepository roleRepository) {
         this.userService = userService;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
     // Phương thức này xử lý cả yêu cầu GET và POST tới trang chủ ('/')
@@ -91,6 +101,13 @@ public class UserController {
         // Lưu người dùng vừa được tạo thông qua dịch vụ
         // this.userService.handleSaveUser(createUser);
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        String hasdPassword = this.passwordEncoder.encode(createUser.getPassWord());
+
+        createUser.setAvatar(avatar);
+        createUser.setPassWord(hasdPassword);
+        // save role
+        role roles = roleRepository.findByName(createUser.getRole().getName());
+        createUser.setRole(roles);
 
         // Chuyển hướng tới trang danh sách người dùng sau khi tạo thành công
         return "redirect:/admin/user";

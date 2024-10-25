@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import vn.hoidanit.laptopshop.domain.user;
 import vn.hoidanit.laptopshop.repository.UserReponsitory;
+import vn.hoidanit.laptopshop.repository.RoleRepository;
 
 @Service
 public class UserService {
     private final UserReponsitory userReponsitory;
+    private final RoleRepository roleRepository;
 
-    public UserService(UserReponsitory userReponsitory) {
+    public UserService(UserReponsitory userReponsitory,
+            RoleRepository roleRepository) {
         this.userReponsitory = userReponsitory;
+        this.roleRepository = roleRepository;
     }
 
     public user handleSaveUser(user creatUser) {
@@ -34,6 +38,10 @@ public class UserService {
 
     public void deleteUsers(long id) {
         this.userReponsitory.deleteById(id);
+    }
+
+    public void getByName(String name) {
+        this.roleRepository.findByName(name);
     }
 
 }
