@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 @Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
 @Table(name = "orders_details") // Chỉ định bảng "orders_details" trong cơ sở dữ liệu sẽ được ánh xạ tới entity
                                 // này
-public class order_details {
+public class Order_details {
     @Id // Đánh dấu thuộc tính này là khóa chính của bảng
     private long id;
 
@@ -20,13 +20,13 @@ public class order_details {
     @ManyToOne
     @JoinColumn(name = "orders_id") // Chỉ định cột khóa ngoại `orders_id` trong bảng `orders_details` liên kết đến
                                     // bảng `orders`
-    private order orders; // Đối tượng order mà chi tiết đơn hàng này thuộc về
+    private Order orders; // Đối tượng order mà chi tiết đơn hàng này thuộc về
 
     // Mối quan hệ: nhiều order_details thuộc về một product (ManyToOne)
     @ManyToOne
     @JoinColumn(name = "products_id") // Chỉ định cột khóa ngoại `products_id` trong bảng `orders_details` liên kết
                                       // đến bảng `products`
-    private product products; // Đối tượng product mà chi tiết đơn hàng này liên kết
+    private Product products; // Đối tượng product mà chi tiết đơn hàng này liên kết
 
     // Các getter và setter
     public long getId() {
@@ -53,19 +53,19 @@ public class order_details {
         this.price = price;
     }
 
-    public order getOrders() {
+    public Order getOrders() {
         return orders;
     }
 
-    public void setOrders(order orders) {
+    public void setOrders(Order orders) {
         this.orders = orders;
     }
 
-    public product getProducts() {
+    public Product getProducts() {
         return products;
     }
 
-    public void setProducts(product products) {
+    public void setProducts(Product products) {
         this.products = products;
     }
 }

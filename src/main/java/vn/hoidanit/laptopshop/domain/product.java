@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
 @Table(name = "products") // Chỉ định bảng "products" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
-public class product {
+public class Product {
     @Id // Đánh dấu thuộc tính này là khóa chính của bảng
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
                                                         // (auto increment)

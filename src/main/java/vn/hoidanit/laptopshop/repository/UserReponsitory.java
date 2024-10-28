@@ -6,15 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Repository;
 
-import vn.hoidanit.laptopshop.domain.user;
+import vn.hoidanit.laptopshop.domain.User;
 
 @Repository
 
-public interface UserReponsitory extends JpaRepository<user, Long> {
+public interface UserReponsitory extends JpaRepository<User, Long> {
 
-    user save(user creatUser);
+    User save(User creatUser);
 
-    List<user> findByEmail(String email);
+    List<User> findByEmail(String email);
 
-    List<user> findAll();
+    List<User> findAll();
 }

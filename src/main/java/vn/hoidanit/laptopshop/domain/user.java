@@ -9,10 +9,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
+import vn.hoidanit.laptopshop.domain.User;
 
 @Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
 @Table(name = "users") // Chỉ định bảng "users" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
-public class user {
+public class User {
     @Id // Đánh dấu thuộc tính này là khóa chính của bảng
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
                                                         // (auto increment)
@@ -23,26 +24,26 @@ public class user {
     // Mối quan hệ: nhiều user có thể có một role (ManyToOne)
     @ManyToOne // Thiết lập mối quan hệ nhiều user - một role
     @JoinColumn(name = "role_id") // Khóa ngoại `role_id` trong bảng `users` ánh xạ đến `role` trong bảng `roles`
-    private role Role;
+    private Role Role;
 
     // Mối quan hệ: một user có thể có nhiều order (OneToMany)
     @OneToMany(mappedBy = "users") // Thiết lập mối quan hệ một user - nhiều order, ánh xạ thông qua thuộc tính
                                    // `users` trong class `order`
-    Set<order> orders;
+    Set<Order> orders;
 
-    public role getRole() {
+    public Role getRole() {
         return Role;
     }
 
-    public void setRole(role role) {
+    public void setRole(Role role) {
         Role = role;
     }
 
-    public Set<order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<order> orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
 

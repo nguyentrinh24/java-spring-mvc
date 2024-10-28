@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import vn.hoidanit.laptopshop.domain.user;
+import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.UserReponsitory;
 import vn.hoidanit.laptopshop.repository.RoleRepository;
 
@@ -20,19 +20,19 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    public user handleSaveUser(user creatUser) {
+    public User handleSaveUser(User creatUser) {
         return userReponsitory.save(creatUser);
     }
 
-    public List<user> findByEmail(String email) {
+    public List<User> findByEmail(String email) {
         return userReponsitory.findByEmail(email);
     }
 
-    public List<user> findAll() {
+    public List<User> findAll() {
         return userReponsitory.findAll();
     }
 
-    public Optional<user> getUsersById(Long id) {
+    public Optional<User> getUsersById(Long id) {
         return userReponsitory.findById(id);
     }
 
