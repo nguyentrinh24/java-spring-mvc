@@ -92,9 +92,9 @@
                                                 <div class="col">
                                                     <label class="form-label">Role</label>
                                                     <form:select class="form-select" path="role.name">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">Admin</option>
-                                                        <option value="2">User</option>
+
+                                                        <form:option value="Admin">Admin</form:option>
+                                                        <form:option value="Admin">User</form:option>
 
                                                     </form:select>
                                                 </div>

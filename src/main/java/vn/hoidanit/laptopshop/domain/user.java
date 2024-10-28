@@ -19,7 +19,7 @@ public class User {
                                                         // (auto increment)
     Long id;
 
-    String email, passWord, fullName, address, phone, avatar;
+    String email, passWord, fullName, phone, address, avatar;
 
     // Mối quan hệ: nhiều user có thể có một role (ManyToOne)
     @ManyToOne // Thiết lập mối quan hệ nhiều user - một role
@@ -39,15 +39,6 @@ public class User {
         Role = role;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-    // Các getter, setter và phương thức khác
     public void setId(Long id) {
         this.id = id;
     }
@@ -64,8 +55,20 @@ public class User {
         this.fullName = fullName;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     public Long getId() {
@@ -80,34 +83,24 @@ public class User {
         return passWord;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
     public String getFullName() {
         return fullName;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getAvatar() {
+        return avatar;
     }
 
-    @Override
-    public String toString() {
-        return "user [id=" + id + ", email=" + email + ", passWord=" + passWord + ", fullName=" + fullName
-                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }
