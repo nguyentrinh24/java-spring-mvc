@@ -12,7 +12,7 @@
                 <meta name="description" content="Administrator - Dự án laptopshop" />
                 <meta name="author" content="Administrator" />
                 <title>Dashboard - Administrator</title>
-                <link href="/css/style.css" rel="stylesheet" />
+                <link href="/admin/css/style.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
 
@@ -35,7 +35,7 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
-                <script src="/js/scripts.js"></script>
+                <script src="/admin/js/scripts.js"></script>
 
             </body>
 
