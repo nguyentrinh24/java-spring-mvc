@@ -10,6 +10,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
 import vn.hoidanit.laptopshop.domain.User;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
 @Table(name = "users") // Chỉ định bảng "users" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
@@ -18,8 +21,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
                                                         // (auto increment)
     Long id;
+    @NotNull
+    String email;
 
-    String email, passWord, fullName, phone, address, avatar;
+    @NotNull
+    String passWord;
+    @NotNull
+    @Min(3)
+    @Max(50)
+    String fullName;
+    @NotNull
+    @Min(8)
+    @Max(15)
+    String phone;
+    String address;
+    String avatar;
 
     // Mối quan hệ: nhiều user có thể có một role (ManyToOne)
     @ManyToOne // Thiết lập mối quan hệ nhiều user - một role

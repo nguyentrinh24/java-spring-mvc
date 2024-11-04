@@ -317,7 +317,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="tab-2" class="tab-pane fade show p-0">
+                            <!-- <div id="tab-2" class="tab-pane fade show p-0">
                                 <div class="row g-4">
                                     <div class="col-lg-12">
                                         <div class="row g-4">
@@ -574,7 +574,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -599,6 +599,11 @@
             <script src="/client/lib/waypoints/waypoints.min.js"></script>
             <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
             <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
+            <!-- jQuery -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
             <!-- Template Javascript -->
             <script src="/client/js/main.js"></script>
