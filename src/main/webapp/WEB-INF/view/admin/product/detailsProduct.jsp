@@ -48,9 +48,7 @@
                                                     <li class="list-group-item">Factory:${showProductPage.factory}</li>
                                                     <li class="list-group-item">quanity:${showProductPage.quanity}</li>
                                                     <li class="list-group-item">detailDesc:${showProductPage.detailDesc}
-                                                    </li>
                                                     <li class="list-group-item">shortDesc:${showProductPage.shortDesc}
-                                                    </li>
                                                     <li class="list-group-item">target:${showProductPage.target}</li>
                                                     <li class="list-group-item">sold:${showProductPage.sold}</li>
 

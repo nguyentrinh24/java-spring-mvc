@@ -83,7 +83,7 @@ public class ProductController {
             model.addAttribute("id", id);
             return "admin/product/detailsProduct";
         } else {
-            return "errorPage";
+            return "hello";
         }
     }
 

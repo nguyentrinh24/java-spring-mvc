@@ -51,7 +51,7 @@
                                             <td>${product.price}</td>
                                             <td>${product.factory}</td>
                                             <td>
-                                                <a href="/admin/product/{product.id}" type="button"
+                                                <a href="/admin/product/${product.id}" type="button"
                                                     class="btn btn-success">View</a>
                                                 <a href="/admin/user/update/${users.id}" type="button"
                                                     class="btn btn-warning">Update</a>
