@@ -51,16 +51,29 @@
                                             <div class="row g-3">
                                                 <div class="col">
                                                     <div class="mb-3">
+                                                        <c:set var="emailHasBindError">
+                                                            <form:errors path="email" />
+                                                        </c:set>
+
                                                         <label class="form-label">Email:</label>
-                                                        <form:input type="email" class="form-control"
-                                                            placeholder="Enter email" path="email" />
+                                                        <form:input type="email"
+                                                            class="form-control ${not empty emailHasBindError ? 'is-invalid' : ''}"
+                                                            path="email" placeholder="Enter email" />
+                                                        <form:errors path="email" cssClass="invalid-feedback" />
                                                     </div>
                                                 </div>
+
                                                 <div class="col">
                                                     <div class="mb-3">
+                                                        <c:set var="passWordHasBindError">
+                                                            <form:errors path="passWord" />
+                                                        </c:set>
+
                                                         <label class="form-label">Password:</label>
-                                                        <form:input type="password" class="form-control"
+                                                        <form:input type="password"
+                                                            class="form-control ${not empty passWordHasBindError ? 'is-invalid' : ''}"
                                                             placeholder="Enter password" path="passWord" />
+                                                        <form:errors path="passWord" cssClass="invalid-feedback" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,46 +81,64 @@
                                             <div class="row g-3">
                                                 <div class="col">
                                                     <div class="mb-3">
+                                                        <c:set var="fullNameHasBindError">
+                                                            <form:errors path="fullName" />
+                                                        </c:set>
+
                                                         <label class="form-label">Full Name:</label>
-                                                        <form:input type="text" class="form-control"
+                                                        <form:input type="text"
+                                                            class="form-control ${not empty fullNameHasBindError ? 'is-invalid' : ''}"
                                                             placeholder="Enter full name" path="fullName" />
+                                                        <form:errors path="fullName" cssClass="invalid-feedback" />
                                                     </div>
                                                 </div>
+
                                                 <div class="col">
                                                     <div class="mb-3">
+                                                        <c:set var="phoneHasBindError">
+                                                            <form:errors path="phone" />
+                                                        </c:set>
+
                                                         <label class="form-label">Phone:</label>
-                                                        <form:input type="text" class="form-control"
+                                                        <form:input type="text"
+                                                            class="form-control ${not empty phoneHasBindError ? 'is-invalid' : ''}"
                                                             placeholder="Enter number" path="phone" />
+                                                        <form:errors path="phone" cssClass="invalid-feedback" />
                                                     </div>
                                                 </div>
                                             </div>
 
-
                                             <div class="mb-3">
+                                                <c:set var="addressHasBindError">
+                                                    <form:errors path="address" />
+                                                </c:set>
+
                                                 <label class="form-label">Address:</label>
-                                                <form:input type="text" class="form-control" placeholder="Enter Address"
-                                                    path="address" />
+                                                <form:input type="text"
+                                                    class="form-control ${not empty addressHasBindError ? 'is-invalid' : ''}"
+                                                    placeholder="Enter address" path="address" />
+                                                <form:errors path="address" cssClass="invalid-feedback" />
                                             </div>
+
                                             <div class="row">
                                                 <div class="col">
                                                     <label class="form-label">Role</label>
                                                     <form:select class="form-select" path="role.name">
-
                                                         <form:option value="Admin">Admin</form:option>
-                                                        <form:option value="Admin">User</form:option>
-
+                                                        <form:option value="User">User</form:option>
                                                     </form:select>
                                                 </div>
+
                                                 <div class="mb-3 col-12 col-md-6">
                                                     <label for="avatarFile" class="form-label">Avatar:</label>
                                                     <input class="form-control" type="file" id="avatarFile"
                                                         accept=".png, .jpg, .jpeg" name="hoidanitFile" />
                                                 </div>
+
                                                 <div class="col-12 mb-3">
                                                     <img style="max-height: 250px; display: none;" alt="avatar preview"
                                                         id="avatarPreview" />
                                                 </div>
-
                                             </div>
 
                                             <button type="submit" class="btn btn-primary">Submit</button>

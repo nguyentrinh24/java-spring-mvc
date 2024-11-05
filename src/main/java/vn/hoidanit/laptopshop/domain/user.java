@@ -10,9 +10,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
 import vn.hoidanit.laptopshop.domain.User;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
 @Table(name = "users") // Chỉ định bảng "users" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
@@ -21,20 +24,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
                                                         // (auto increment)
     Long id;
-    @NotNull
+    @Email(message = "Email không hợp lệ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+
     String email;
 
     @NotNull
+
+    @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
     String passWord;
+
     @NotNull
-    @Min(3)
-    @Max(50)
+    @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
     String fullName;
+
     @NotNull
-    @Min(8)
-    @Max(15)
+    @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
     String phone;
+
+    @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
     String address;
+
+    @NotNull
+    @NotEmpty(message = "Không được để trống trường này!")
     String avatar;
 
     // Mối quan hệ: nhiều user có thể có một role (ManyToOne)

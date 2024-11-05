@@ -44,14 +44,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="users" items="${arrUser}">
+                                    <c:forEach var="product" items="${arrProduct}">
                                         <tr>
-                                            <th scope="row">${users.id}</th>
-                                            <td>${users.email}</td>
-                                            <td>${users.fullName}</td>
-                                            <td>${users.role.name}</td>
+                                            <th scope="row">${product.id}</th>
+                                            <td>${product.name}</td>
+                                            <td>${product.price}</td>
+                                            <td>${product.factory}</td>
                                             <td>
-                                                <a href="/admin/user/${users.id}" type="button"
+                                                <a href="/admin/product/{product.id}" type="button"
                                                     class="btn btn-success">View</a>
                                                 <a href="/admin/user/update/${users.id}" type="button"
                                                     class="btn btn-warning">Update</a>

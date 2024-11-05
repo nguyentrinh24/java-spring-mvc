@@ -41,11 +41,20 @@
                                             <div>
 
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">ID:${showUser.id}</li>
-                                                    <li class="list-group-item">Email:${showUser.email}</li>
-                                                    <li class="list-group-item">Password:${showUser.passWord}</li>
-                                                    <li class="list-group-item">Address:${showUser.address}</li>
-                                                    <li class="list-group-item">Phone:${showUser.phone}</li>
+
+                                                    <li class="list-group-item">ID:${showProductPage.id}</li>
+                                                    <li class="list-group-item">Name:${showProductPage.name}</li>
+                                                    <li class="list-group-item">Price:${showProductPage.price}</li>
+                                                    <li class="list-group-item">Factory:${showProductPage.factory}</li>
+                                                    <li class="list-group-item">quanity:${showProductPage.quanity}</li>
+                                                    <li class="list-group-item">detailDesc:${showProductPage.detailDesc}
+                                                    </li>
+                                                    <li class="list-group-item">shortDesc:${showProductPage.shortDesc}
+                                                    </li>
+                                                    <li class="list-group-item">target:${showProductPage.target}</li>
+                                                    <li class="list-group-item">sold:${showProductPage.sold}</li>
+
+
 
                                                 </ul>
 
@@ -53,7 +62,7 @@
 
                                         </div>
 
-                                        <a href="/admin/user" type="button" class="btn btn-success"
+                                        <a href="/admin/product" type="button" class="btn btn-success"
                                             style="width: 10%;">Back</a>
                                     </tbody>
 

@@ -66,14 +66,15 @@ public class UserController {
     @PostMapping("/admin/user/create")
     public String saveTableUser(Model model,
             @Valid @ModelAttribute("userCreate") User createUser,
-            BindingResult bindingResult,
+            BindingResult newUserBindingResult,
             @RequestParam("hoidanitFile") MultipartFile file) {
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
 
-        if (bindingResult.hasErrors()) {
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError error : errors) {
-                System.out.println(error.getObjectName() + " - " + error.getDefaultMessage());
-            }
+        if (newUserBindingResult.hasErrors()) {
+
             return "/admin/user/create"; // Trả về trang tạo nếu có lỗi
         }
 
