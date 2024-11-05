@@ -87,7 +87,7 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Quantity:</label>
                                                         <form:input type="number" class="form-control"
-                                                            placeholder="Enter " path="quanity" />
+                                                            placeholder="Enter " path="quantity" />
                                                     </div>
                                                 </div>
                                             </div>

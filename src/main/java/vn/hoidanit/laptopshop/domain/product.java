@@ -20,10 +20,10 @@ public class Product {
 
     @NotNull(message = "Quantity không được để trống")
     @Positive(message = "Quantity phải là số dương")
-    private long quanity;
+    private long quantity;
 
     @NotNull(message = "Sold không được để trống")
-    @Positive(message = "Sold phải là số dương")
+
     private long sold;
 
     @NotNull(message = "Price không được để trống")
@@ -63,12 +63,12 @@ public class Product {
         this.id = id;
     }
 
-    public long getQuanity() {
-        return quanity;
+    public long getQuantity() {
+        return quantity;
     }
 
-    public void setQuanity(long quanity) {
-        this.quanity = quanity;
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
     }
 
     public long getSold() {
