@@ -4,35 +4,56 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 
-@Entity // Đánh dấu lớp này là một entity để ánh xạ với bảng trong cơ sở dữ liệu
-@Table(name = "products") // Chỉ định bảng "products" trong cơ sở dữ liệu sẽ được ánh xạ tới entity này
+@Entity
+@Table(name = "products")
 public class Product {
-    @Id // Đánh dấu thuộc tính này là khóa chính của bảng
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Tự động tạo giá trị khóa chính, theo chiến lược tăng tự động
-                                                        // (auto increment)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long quanity, sold;
+    @NotNull(message = "Quantity không được để trống")
+    @Positive(message = "Quantity phải là số dương")
+    private long quanity;
+
+    @NotNull(message = "Sold không được để trống")
+    @Positive(message = "Sold phải là số dương")
+    private long sold;
+
+    @NotNull(message = "Price không được để trống")
+    @Positive(message = "Price phải là số dương")
     private double price;
-    private String name, image, detailDesc, shortDesc, factory, target;
 
-    // Các getter, setter và phương thức khác
-    @Override
-    public String toString() {
-        return "product [id=" + id + ", quanity=" + quanity + ", sold=" + sold + ", price=" + price + ", name=" + name
-                + ", image=" + image + ", detailDesc=" + detailDesc + ", shortDesc=" + shortDesc + ", factory="
-                + factory + ", target=" + target + "]";
-    }
+    @NotNull(message = "Name không được để trống")
+    @NotEmpty(message = "Name không được để trống")
+    private String name;
 
-    public double getPrice() {
-        return price;
-    }
+    private String image;
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    @NotNull(message = "detailDesc không được để trống")
+    @NotEmpty(message = "detailDesc không được để trống")
+    @Column(columnDefinition = "MEDIUMTEXT")
+    private String detailDesc;
+
+    @NotNull(message = "shortDesc không được để trống")
+    @NotEmpty(message = "shortDesc không được để trống")
+    private String shortDesc;
+
+    @NotNull(message = "Factory không được để trống")
+    @NotEmpty(message = "Factory không được để trống")
+    private String factory;
+
+    @NotNull(message = "Target không được để trống")
+    @NotEmpty(message = "Target không được để trống")
+    private String target;
+
+    // Các getter và setter
 
     public long getId() {
         return id;
@@ -56,6 +77,14 @@ public class Product {
 
     public void setSold(long sold) {
         this.sold = sold;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getName() {

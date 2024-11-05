@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.validation.Valid;
@@ -85,6 +86,62 @@ public class ProductController {
         } else {
             return "hello";
         }
+    }
+
+    @GetMapping("/admin/product/update/{id}")
+    public String updateUser(Model model, @PathVariable Long id) {
+        Optional<Product> product = this.pService.getProductsById(id);
+        if (product.isPresent()) {
+            model.addAttribute("productCreate", product.get());
+            return "/admin/product/updateProduct";
+        } else {
+            return "hello";
+        }
+    }
+
+    @PostMapping("/admin/product/update")
+    public String postUpdateUser(Model model,
+            @Valid @ModelAttribute("productCreate") Product productCreate,
+            BindingResult productBindingResult,
+            @RequestParam("hoidanitFile") MultipartFile file) {
+        Optional<Product> product = this.pService.getProductsById(productCreate.getId());
+        System.out.println(productCreate.getId());
+        if (product.isPresent()) {
+
+            Product updateProduct = product.get();
+            updateProduct.setName(productCreate.getName());
+            updateProduct.setPrice(productCreate.getPrice());
+            updateProduct.setDetailDesc(productCreate.getDetailDesc());
+            updateProduct.setShortDesc(productCreate.getShortDesc());
+            updateProduct.setQuanity(productCreate.getQuanity());
+            updateProduct.setFactory(productCreate.getFactory());
+            updateProduct.setTarget(productCreate.getTarget());
+            if (!file.isEmpty()) {
+                String img = this.uService.handleSaveUploadFile(file, "product");
+                updateProduct.setImage(img);
+            }
+
+            this.pService.saveProducts(updateProduct);
+            return "redirect:/admin/product";
+        } else {
+            return "hello";
+        }
+    }
+
+    @RequestMapping(value = "/admin/product/delete/{id}")
+    public String getDeletePage(Model model, @PathVariable Long id) {
+        model.addAttribute("id", id);
+        Product product = new Product();
+        product.setId(id);
+        model.addAttribute("deleteUser", product);
+        return "admin/product/deleteProduct";
+    }
+
+    @PostMapping("/admin/product/delete/{id}")
+    public String postDeletePage(Model model, @PathVariable Long id,
+            @ModelAttribute("deleteProduct") User deleteProduct) {
+        this.pService.deleteProduct(deleteProduct.getId());
+        return "redirect:/admin/product";
     }
 
 }

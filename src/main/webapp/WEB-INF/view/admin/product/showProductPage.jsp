@@ -53,9 +53,9 @@
                                             <td>
                                                 <a href="/admin/product/${product.id}" type="button"
                                                     class="btn btn-success">View</a>
-                                                <a href="/admin/user/update/${users.id}" type="button"
+                                                <a href="/admin/product/update/${product.id}" type="button"
                                                     class="btn btn-warning">Update</a>
-                                                <a href="/admin/user/delete/${users.id}" type="button"
+                                                <a href="/admin/product/delete/${product.id}" type="button"
                                                     class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
