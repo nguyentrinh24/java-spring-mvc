@@ -47,7 +47,7 @@
 
                                             </div>
                                             <form:form action="/admin/product/delete/${id}" method="post"
-                                                modelAttribute="deleteUser">
+                                                modelAttribute="deleteProduct">
                                                 <div class="mb-3" style="display: none;">
                                                     <label class="form-label">ID:</label>
                                                     <form:input type="text" class="form-control" placeholder="ID"
