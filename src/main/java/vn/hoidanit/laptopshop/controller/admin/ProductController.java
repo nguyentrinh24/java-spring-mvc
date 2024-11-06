@@ -63,7 +63,7 @@ public class ProductController {
         productCreate.setImage(avatar);
 
         // Save the product
-        this.pService.saveProducts(productCreate);
+        this.pService.saveProduct(productCreate, file);
 
         return "redirect:/admin/product";
     }
@@ -122,11 +122,11 @@ public class ProductController {
             }
 
             // Lưu đối tượng Product với tên ảnh mới vào cơ sở dữ liệu
-            this.pService.saveProducts(updateProduct);
+            this.pService.saveProduct(productCreate, file);
 
             return "redirect:/admin/product";
         } else {
-            return "hello";
+            return "404";
         }
     }
 

@@ -14,16 +14,17 @@ import jakarta.servlet.ServletContext;
 public class UploadService {
     private final ServletContext servletContext;
 
-    public UploadService(ServletContext servletContext) {
+    public UploadService(
+            ServletContext servletContext) {
+
         this.servletContext = servletContext;
     }
 
     public String handleSaveUploadFile(MultipartFile file, String targetFolder) {
-        // Kiểm tra nếu file rỗng
-        if (file.isEmpty()) {
+        // don't upload file
+        if (file.isEmpty())
             return "";
-        }
-        // Đường dẫn thư mục gốc lưu ảnh
+        // relative path: absolute path
         String rootPath = this.servletContext.getRealPath("/resources/images");
         String finalName = "";
         try {
@@ -32,16 +33,22 @@ public class UploadService {
             File dir = new File(rootPath + File.separator + targetFolder);
             if (!dir.exists())
                 dir.mkdirs();
-            // Tạo tên file duy nhất bằng timestamp + tên file gốc
+
+            // Create the file on server
             finalName = System.currentTimeMillis() + "-" + file.getOriginalFilename();
-            // Tạo file trên server
+
             File serverFile = new File(dir.getAbsolutePath() + File.separator + finalName);
-            try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
-                stream.write(bytes);
-            }
+            // uuid
+
+            BufferedOutputStream stream = new BufferedOutputStream(
+                    new FileOutputStream(serverFile));
+            stream.write(bytes);
+            stream.close();
         } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return finalName; // Trả về tên file để lưu vào Product
+        return finalName;
     }
+
 }
