@@ -1,4 +1,4 @@
-package vn.hoidanit.laptopshop.domain;
+package vn.hoidanit.laptopshop.domain.DTO;
 
 public class RegisterDTO {
     private String firstName, lastName, email, password, confirmPassword;
@@ -9,6 +9,9 @@ public class RegisterDTO {
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    public RegisterDTO() {
     }
 
     public String getFirstName() {
