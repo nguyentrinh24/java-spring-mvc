@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,9 @@ import vn.hoidanit.laptopshop.service.ProductService;
 import vn.hoidanit.laptopshop.service.UserService;
 
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -58,7 +63,15 @@ public class PageProductController {
     }
 
     @PostMapping("/register")
-    public String postRegister(Model model, @ModelAttribute("registerUser") RegisterDTO registerDTO) {
+    public String postRegister(Model model,
+            @Valid @ModelAttribute("registerUser") RegisterDTO registerDTO,
+            BindingResult newUserBindingResult) {
+
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+
         User user = this.userService.registerDTOtoUser(registerDTO);
 
         String hashPassword = this.passwordEncoder.encode(user.getPassWord());

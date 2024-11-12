@@ -10,6 +10,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -31,6 +32,7 @@ public class User {
     @NotNull
 
     @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
+    @StrongPassword(message = "mật khẩu phải dài hơn 8 kí tự")
     String passWord;
 
     @NotNull
