@@ -64,12 +64,12 @@ public class PageProductController {
 
     @PostMapping("/register")
     public String postRegister(Model model,
-            @Valid @ModelAttribute("registerUser") RegisterDTO registerDTO,
+            @ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
             BindingResult newUserBindingResult) {
 
         List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+            System.out.println(">>>>>>>>>>>>>" + error.getField() + " - " + error.getDefaultMessage());
         }
 
         User user = this.userService.registerDTOtoUser(registerDTO);
