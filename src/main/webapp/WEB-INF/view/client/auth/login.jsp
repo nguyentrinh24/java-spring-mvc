@@ -116,17 +116,23 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <form>
+                                                        <c:if test="${param.error != null}">
+                                                            <div class="my-2" style="color: red;">Invalid email or
+                                                                password.</div>
+                                                        </c:if>
                                                         <div class="form-floating mb-3">
                                                             <label for="inputEmail">Email address</label>
                                                             <input class="form-control" id="inputEmail" type="email"
-                                                                placeholder="name@example.com" />
+                                                                placeholder="name@example.com" name="username" />
 
                                                         </div>
                                                         <div class="form-floating mb-3">
                                                             <label for="inputPassword">Password</label>
                                                             <input class="form-control" id="inputPassword"
-                                                                type="password" placeholder="Password" />
-
+                                                                type="password" placeholder="Password"
+                                                                name="password" />
+                                                            <input type="hidden" name="${_csrf.parameterName}"
+                                                                value="${_csrf.token}" />
                                                         </div>
                                                         <div class="mt-4 mb-0">
                                                             <button type="submit" class="btn btn-primary"><a

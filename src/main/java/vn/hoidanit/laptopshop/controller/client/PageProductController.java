@@ -87,6 +87,6 @@ public class PageProductController {
     @GetMapping("/login")
     public String getLogin(Model model) {
 
-        return "/client/auth/login";
+        return "client/auth/login";
     }
 }
