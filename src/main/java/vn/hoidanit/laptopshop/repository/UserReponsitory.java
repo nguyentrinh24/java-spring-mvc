@@ -17,4 +17,9 @@ public interface UserReponsitory extends JpaRepository<User, Long> {
     List<User> findByEmail(String email);
 
     List<User> findAll();
+
+    boolean existsByEmail(String email);
+
+    User findUserByEmail(String email);
+
 }
