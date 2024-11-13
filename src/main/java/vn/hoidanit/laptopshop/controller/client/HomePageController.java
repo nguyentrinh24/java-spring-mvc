@@ -21,7 +21,7 @@ public class HomePageController {
     public String getHomePage(Model model) {
         List<Product> products = pRepository.findAll();
         model.addAttribute("productHome", products);
-        return "/client/homepage/ShowHomePage";
+        return "client/homepage/ShowHomePage";
     }
 
 }
