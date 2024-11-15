@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DashbroadController {
-    @GetMapping("/admin")
+    @GetMapping("admin")
     public String getMethodName() {
-        return "/admin/dashbroad/dashbroadPage";
+        return "admin/dashbroad/dashbroadPage";
     }
 
 }

@@ -39,8 +39,8 @@
                                     <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
                                     <li class="breadcrumb-item active"><a href="/admin/product">Product</a></li>
                                 </ol>
-                                <form:form method="POST" action="/admin/product/create" modelAttribute="productCreate"
-                                    enctype="multipart/form-data">
+                                <form:form method="POST" action="/admin/product/createProduct"
+                                    modelAttribute="productCreate" enctype="multipart/form-data">
 
                                     <div class="row">
                                         <div class="col-md-6 col-12 mx-auto">

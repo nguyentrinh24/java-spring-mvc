@@ -29,22 +29,22 @@ public class ProductController {
         this.uService = uService;
     }
 
-    @GetMapping("/admin/product")
+    @GetMapping("admin/product")
     public String getProductPage(Model model) {
         List<Product> products = pService.findAll();
         model.addAttribute("arrProduct", products);
-        return "/admin/product/showProductPage";
+        return "admin/product/showProductPage";
     }
 
     // Display the form for creating a product (GET)
-    @GetMapping("/admin/product/createProduct")
+    @GetMapping("admin/product/createProduct")
     public String getPageCreateProduct(Model model) {
         model.addAttribute("productCreate", new Product());
-        return "/admin/product/createProduct";
+        return "admin/product/createProduct";
     }
 
     // Save a new product (POST)
-    @PostMapping("/admin/product/create")
+    @PostMapping("admin/product/createProduct")
     public String saveProduct(Model model,
             @Valid @ModelAttribute("productCreate") Product productCreate,
             BindingResult productBindingResult,
@@ -55,7 +55,7 @@ public class ProductController {
             for (FieldError error : productBindingResult.getFieldErrors()) {
                 System.out.println(error.getField() + " - " + error.getDefaultMessage());
             }
-            return "/admin/product/createProduct"; // Return to the creation form if validation fails
+            return "admin/product/createProduct"; // Return to the creation form if validation fails
         }
 
         // Handle file upload and set the product's image
@@ -68,7 +68,7 @@ public class ProductController {
         return "redirect:/admin/product";
     }
 
-    @GetMapping("/admin/product/{id}")
+    @GetMapping("admin/product/{id}")
     public String viewProduct(Model model, @PathVariable Long id) {
         Optional<Product> product = this.pService.getProductsById(id);
         if (product.isPresent()) {
@@ -80,18 +80,18 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/admin/product/update/{id}")
+    @GetMapping("admin/product/update/{id}")
     public String updateProduct(Model model, @PathVariable Long id) {
         Optional<Product> product = this.pService.getProductsById(id);
         if (product.isPresent()) {
             model.addAttribute("productCreate", product.get());
-            return "/admin/product/updateProduct";
+            return "admin/product/updateProduct";
         } else {
             return "error";
         }
     }
 
-    @PostMapping("/admin/product/update")
+    @PostMapping("admin/product/update")
     public String postUpdateUser(Model model,
             @Valid @ModelAttribute("productCreate") Product productCreate,
             BindingResult productBindingResult,
@@ -130,7 +130,7 @@ public class ProductController {
         }
     }
 
-    @RequestMapping("/admin/product/delete/{id}")
+    @RequestMapping("admin/product/delete/{id}")
     public String getDeletePage(Model model, @PathVariable Long id) {
         model.addAttribute("id", id);
         Product product = new Product();
@@ -139,7 +139,7 @@ public class ProductController {
         return "admin/product/deleteProduct";
     }
 
-    @PostMapping("/admin/product/delete/{id}")
+    @PostMapping("admin/product/delete/{id}")
     public String postDeletePage(@PathVariable Long id) {
         this.pService.deleteProduct(id);
         return "redirect:/admin/product";

@@ -21,11 +21,15 @@ public class UploadService {
     }
 
     public String handleSaveUploadFile(MultipartFile file, String targetFolder) {
-        // don't upload file
+        // don't upload file if it is empty
         if (file.isEmpty())
             return "";
+
+        // Sanitize targetFolder to prevent nested folder creation
+        targetFolder = targetFolder.replaceAll("[/\\\\]+", ""); // Loại bỏ các ký tự "/" và "\" dư thừa
+
         // relative path: absolute path
-        String rootPath = this.servletContext.getRealPath("/resources/images");
+        String rootPath = this.servletContext.getRealPath("/resources/admin/images/product");
         String finalName = "";
         try {
             byte[] bytes = file.getBytes();
@@ -45,7 +49,6 @@ public class UploadService {
             stream.write(bytes);
             stream.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return finalName;

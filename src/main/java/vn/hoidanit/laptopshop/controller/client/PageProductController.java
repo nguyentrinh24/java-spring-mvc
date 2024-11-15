@@ -47,7 +47,7 @@ public class PageProductController {
         Optional<Product> products = this.pService.getProductsById(id);
         if (products.isPresent()) {
             model.addAttribute("productCreate", products.get());
-            return "/client/product/details";
+            return "client/product/details";
 
         }
 
