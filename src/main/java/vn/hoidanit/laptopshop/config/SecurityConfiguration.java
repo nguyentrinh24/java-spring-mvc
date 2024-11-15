@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import jakarta.servlet.DispatcherType;
@@ -49,19 +50,29 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+        return new CustomSuccessHandler();
+    }
+
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE)
+                        // Các đường dẫn công khai
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
+                        .requestMatchers("/", "/login", "/client/**", "/css/**",
+                                "/js/**", "/resources/**")
                         .permitAll()
-                        .requestMatchers("/", "/login", "/client/**", "/css/**", "/js/**", "/images/**",
-                                "/resources/admin/**")
-                        .permitAll()
+
+                        // Đường dẫn cần vai trò ADMIN
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // Tất cả các yêu cầu khác cần đăng nhập
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
+                        .successHandler(myAuthenticationSuccessHandler())
                         .failureHandler((request, response, exception) -> {
-                            // Xử lý khi xác thực thất bại, không hiển thị user/password trên URL
                             request.getSession().setAttribute("error", "Invalid username or password");
                             response.sendRedirect("/login");
                         })

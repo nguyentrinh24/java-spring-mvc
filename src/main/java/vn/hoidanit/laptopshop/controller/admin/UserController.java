@@ -57,13 +57,13 @@ public class UserController {
         }
     }
 
-    @GetMapping("/admin/user/create")
+    @GetMapping("admin/user/create")
     public String getPageCreateUser(Model model, @ModelAttribute("userCreate") User createUser) {
         model.addAttribute("createUser", new User());
-        return "/admin/user/create";
+        return "admin/user/create";
     }
 
-    @PostMapping("/admin/user/create")
+    @PostMapping("admin/user/create")
     public String saveTableUser(Model model,
             @Valid @ModelAttribute("userCreate") User createUser,
             BindingResult newUserBindingResult,
@@ -75,7 +75,7 @@ public class UserController {
 
         if (newUserBindingResult.hasErrors()) {
 
-            return "/admin/user/create"; // Trả về trang tạo nếu có lỗi
+            return "admin/user/create"; // Trả về trang tạo nếu có lỗi
         }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
