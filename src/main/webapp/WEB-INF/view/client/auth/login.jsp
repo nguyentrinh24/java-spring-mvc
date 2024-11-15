@@ -115,33 +115,34 @@
                                                     <h3 class="text-center font-weight-light my-4">Login</h3>
                                                 </div>
                                                 <div class="card-body">
-                                                    <form>
-                                                        <c:if test="${param.error != null}">
-                                                            <div class="my-2" style="color: red;">Invalid email or
-                                                                password.</div>
+                                                    <form action="" method="post">
+                                                        <c:if test="${not empty sessionScope.error}">
+                                                            <div class="my-2" style="color: red;">${sessionScope.error}
+                                                            </div>
+                                                            <c:remove var="error" scope="session" />
                                                         </c:if>
+
                                                         <div class="form-floating mb-3">
                                                             <label for="inputEmail">Email address</label>
-                                                            <input class="form-control" id="inputEmail" type="email"
+                                                            <input class="form-control" type="email"
                                                                 placeholder="name@example.com" name="username" />
 
                                                         </div>
                                                         <div class="form-floating mb-3">
                                                             <label for="inputPassword">Password</label>
-                                                            <input class="form-control" id="inputPassword"
-                                                                type="password" placeholder="Password"
-                                                                name="password" />
-                                                            <input type="hidden" name="${_csrf.parameterName}"
-                                                                value="${_csrf.token}" />
+                                                            <input class="form-control" type="password"
+                                                                placeholder="Password" name="password" />
+
                                                         </div>
+                                                        <div> <input type="hidden" name="${_csrf.parameterName}"
+                                                                value="${_csrf.token}" /></div>
                                                         <div class="mt-4 mb-0">
-                                                            <button type="submit" class="btn btn-primary"><a
-                                                                    href="/client/homepage/ShowHomePage">Login</a></button>
+                                                            <button type="submit" class="btn btn-primary">Login</button>
                                                         </div>
                                                     </form>
                                                     <div class="card-footer text-center py-3">
-                                                        <div class="small"><a href="register">Need an account? Sign
-                                                                up!</a></div>
+                                                        <div class="small"><a href="/register">Need an
+                                                                account? Sign up!</a></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -153,6 +154,7 @@
                     </div>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
+                    <script src="/client/lib/owlcarousel/owl.carousel.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                         crossorigin="anonymous"></script>
                     <script src="/client/js/main.js"></script>

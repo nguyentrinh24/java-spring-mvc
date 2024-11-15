@@ -182,6 +182,7 @@
                 <script src="/client/lib/waypoints/waypoints.min.js"></script>
                 <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
                 <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
+                <script src="/client/lib/owlcarousel/owl.carousel.js"></script>
 
                 <!-- Template Javascript -->
                 <script src="/client/js/main.js"></script>

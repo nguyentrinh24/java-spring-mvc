@@ -203,6 +203,7 @@
                 <script src="/client/lib/waypoints/waypoints.min.js"></script>
                 <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
                 <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
+                <script src="/client/lib/owlcarousel/owl.carousel.js"></script>
                 <!-- jQuery -->
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <!-- Bootstrap JS -->

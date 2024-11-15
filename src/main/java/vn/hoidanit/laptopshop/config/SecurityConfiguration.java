@@ -52,15 +52,18 @@ public class SecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD,
-                                DispatcherType.INCLUDE)
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE)
                         .permitAll()
-                        .requestMatchers("/", "/login", "/client/**", "/css/**", "/js/**", "/images/**")
+                        .requestMatchers("/", "/login", "/client/**", "/css/**", "/js/**", "/images/**", "/admin/**")
                         .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
-                        .failureUrl("/login?error")
+                        .failureHandler((request, response, exception) -> {
+                            // Xử lý khi xác thực thất bại, không hiển thị user/password trên URL
+                            request.getSession().setAttribute("error", "Invalid username or password");
+                            response.sendRedirect("/login");
+                        })
                         .permitAll());
         return http.build();
     }
