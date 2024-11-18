@@ -29,7 +29,7 @@ public class UploadService {
         targetFolder = targetFolder.replaceAll("[/\\\\]+", ""); // Loại bỏ các ký tự "/" và "\" dư thừa
 
         // relative path: absolute path
-        String rootPath = this.servletContext.getRealPath("/resources/admin/images/product");
+        String rootPath = this.servletContext.getRealPath("/resources/images/product");
         String finalName = "";
         try {
             byte[] bytes = file.getBytes();

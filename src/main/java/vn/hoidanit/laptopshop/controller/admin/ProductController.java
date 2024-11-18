@@ -95,7 +95,7 @@ public class ProductController {
     public String postUpdateUser(Model model,
             @Valid @ModelAttribute("productCreate") Product productCreate,
             BindingResult productBindingResult,
-            @RequestParam("hoidanitFile") MultipartFile file) {
+            @RequestParam("updateImg") MultipartFile file) {
 
         // Tìm sản phẩm theo ID từ đối tượng productCreate
         Optional<Product> product = this.pService.getProductsById(productCreate.getId());

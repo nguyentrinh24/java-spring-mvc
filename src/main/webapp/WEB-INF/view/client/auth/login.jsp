@@ -146,11 +146,12 @@
                                                         <div class="mt-4 mb-0">
                                                             <button type="submit" class="btn btn-primary">Login</button>
                                                         </div>
+                                                        <div class="card-footer text-center py-3">
+                                                            <div class="small"><a href="/register">Need an
+                                                                    account? Sign up!</a></div>
+                                                        </div>
                                                     </form>
-                                                    <div class="card-footer text-center py-3">
-                                                        <div class="small"><a href="/register">Need an
-                                                                account? Sign up!</a></div>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

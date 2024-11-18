@@ -63,7 +63,7 @@ public class SecurityConfiguration {
                                 DispatcherType.INCLUDE)
                         .permitAll()
                         .requestMatchers("/", "/login", "/client/**", "/css/**",
-                                "/js/**", "/resources/**")
+                                "/js/**", "/register", "/images/**")
                         .permitAll()
 
                         // Đường dẫn cần vai trò ADMIN
@@ -78,7 +78,9 @@ public class SecurityConfiguration {
                             request.getSession().setAttribute("error", "Invalid username or password");
                             response.sendRedirect("/login");
                         })
-                        .permitAll());
+                        .permitAll())
+                .exceptionHandling(ex -> ex.accessDeniedPage("/accessDenied"));
+        ;
         return http.build();
     }
 

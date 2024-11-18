@@ -42,7 +42,7 @@ public class PageProductController {
         this.userService = userService;
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("product/{id}")
     public String getProduct(Model model, @PathVariable long id) {
         Optional<Product> products = this.pService.getProductsById(id);
         if (products.isPresent()) {
@@ -55,14 +55,14 @@ public class PageProductController {
 
     }
 
-    @GetMapping("/register")
+    @GetMapping("register")
     public String getRegister(Model model) {
 
         model.addAttribute("registerUser", new RegisterDTO());
         return "/client/auth/register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public String postRegister(Model model,
             @ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
             BindingResult newUserBindingResult) {
@@ -84,10 +84,15 @@ public class PageProductController {
         return "redirect:login";
     }
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String getLogin(Model model) {
 
         return "client/auth/login";
     }
 
+    @GetMapping("accessDenied")
+    public String getDenied(Model model) {
+
+        return "client/auth/denied";
+    }
 }
