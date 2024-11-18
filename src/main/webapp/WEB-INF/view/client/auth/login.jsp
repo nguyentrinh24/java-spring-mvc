@@ -116,10 +116,17 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <form action="" method="post">
-                                                        <c:if test="${not empty sessionScope.error}">
-                                                            <div class="my-2" style="color: red;">${sessionScope.error}
+                                                        <c:if test="${param.error!= null}">
+                                                            <div class="my-2" style="color: red;">Tài khoản mật khẩu
+                                                                không chính xác.
                                                             </div>
-                                                            <c:remove var="error" scope="session" />
+
+                                                        </c:if>
+                                                        <c:if test="${param.logout!= null}">
+                                                            <div class="my-2" style="color: green;">Đăng xuất thành
+                                                                công.
+                                                            </div>
+
                                                         </c:if>
 
                                                         <div class="form-floating mb-3">

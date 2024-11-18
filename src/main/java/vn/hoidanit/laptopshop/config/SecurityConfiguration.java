@@ -59,7 +59,9 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         // Các đường dẫn công khai
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD,
+                                DispatcherType.INCLUDE)
+                        .permitAll()
                         .requestMatchers("/", "/login", "/client/**", "/css/**",
                                 "/js/**", "/resources/**")
                         .permitAll()
