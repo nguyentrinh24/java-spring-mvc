@@ -92,38 +92,31 @@ public class ProductController {
             @Valid @ModelAttribute("productCreate") Product productCreate,
             BindingResult productBindingResult,
             @RequestParam("updateImg") MultipartFile file) {
+        // validate
+        if (productBindingResult.hasErrors()) {
+            return "admin/product/update";
+        }
 
-        // Tìm sản phẩm theo ID từ đối tượng productCreate
-        Optional<Product> product = this.pService.getProductsById(productCreate.getId());
-        if (product.isPresent()) {
-
-            Product updateProduct = product.get();
-
-            // Cập nhật các thông tin từ form
-            updateProduct.setName(productCreate.getName());
-            updateProduct.setPrice(productCreate.getPrice());
-            updateProduct.setDetailDesc(productCreate.getDetailDesc());
-            updateProduct.setShortDesc(productCreate.getShortDesc());
-            updateProduct.setQuantity(productCreate.getQuantity());
-            updateProduct.setFactory(productCreate.getFactory());
-            updateProduct.setTarget(productCreate.getTarget());
-
-            // Kiểm tra nếu file không rỗng (có ảnh mới được tải lên)
+        Product currentProduct = this.pService.getProductsById(productCreate.getId()).get();
+        if (currentProduct != null) {
+            // update new image
             if (!file.isEmpty()) {
-                // Lưu ảnh mới và lấy tên ảnh
                 String img = this.upService.handleSaveUploadFile(file, "product");
-
-                // Cập nhật tên ảnh mới vào đối tượng Product
-                updateProduct.setImage(img);
+                currentProduct.setImage(img);
             }
 
-            // Lưu đối tượng Product với tên ảnh mới vào cơ sở dữ liệu
-            this.pService.saveProduct(productCreate);
+            currentProduct.setName(productCreate.getName());
+            currentProduct.setPrice(productCreate.getPrice());
+            currentProduct.setQuantity(productCreate.getQuantity());
+            currentProduct.setDetailDesc(productCreate.getDetailDesc());
+            currentProduct.setShortDesc(productCreate.getShortDesc());
+            currentProduct.setFactory(productCreate.getFactory());
+            currentProduct.setTarget(productCreate.getTarget());
 
-            return "redirect:/admin/product";
-        } else {
-            return "404";
+            this.pService.saveProduct(currentProduct);
         }
+
+        return "redirect:/admin/product";
     }
 
     @RequestMapping("admin/product/delete/{id}")
