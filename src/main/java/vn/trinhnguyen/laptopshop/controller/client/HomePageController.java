@@ -19,7 +19,7 @@ public class HomePageController {
         this.pRepository = pRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String getHomePage(Model model, HttpServletRequest request) {
         List<Product> products = pRepository.findAll();
         model.addAttribute("productHome", products);

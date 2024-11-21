@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Set;
 import vn.trinhnguyen.laptopshop.domain.User;
@@ -56,6 +57,17 @@ public class User {
     @OneToMany(mappedBy = "users") // Thiết lập mối quan hệ một user - nhiều order, ánh xạ thông qua thuộc tính
                                    // `users` trong class `order`
     Set<Order> orders;
+
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public Role getRole() {
         return Role;

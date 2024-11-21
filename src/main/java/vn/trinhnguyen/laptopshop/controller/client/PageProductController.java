@@ -59,7 +59,13 @@ public class PageProductController {
     public String getRegister(Model model) {
 
         model.addAttribute("registerUser", new RegisterDTO());
-        return "/client/auth/register";
+        return "client/auth/register";
+    }
+
+    @PostMapping("product-add-to-cart/{id}")
+    public String postMethodCart(@PathVariable long id) {
+
+        return "404";
     }
 
     @PostMapping("register")
@@ -69,7 +75,7 @@ public class PageProductController {
 
         // validate
         if (newUserBindingResult.hasErrors()) {
-            return "/client/auth/register";
+            return "client/auth/register";
         }
         User user = this.userService.registerDTOtoUser(registerDTO);
 
