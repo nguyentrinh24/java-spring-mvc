@@ -39,7 +39,7 @@
                                             <div class="text-center my-3">
 
 
-                                                <c:out value="${pageContext.request.userPrincipal.name}" />
+                                                <c:out value="${sessionScope.fullname}" />
 
                                             </div>
                                         </li>
