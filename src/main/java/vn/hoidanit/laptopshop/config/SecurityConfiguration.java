@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
+import org.springframework.session.security.web.authentication.SpringSessionRememberMeServices;
 
 import jakarta.servlet.DispatcherType;
 import vn.hoidanit.laptopshop.service.CustomUserDetailsService;
@@ -55,6 +56,14 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    public SpringSessionRememberMeServices rememberMeServices() {
+        SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
+        // optionally customize
+        rememberMeServices.setAlwaysRemember(true);
+        return rememberMeServices;
+    }
+
+    @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
@@ -71,6 +80,7 @@ public class SecurityConfiguration {
 
                         // Tất cả các yêu cầu khác cần đăng nhập
                         .anyRequest().authenticated())
+                .rememberMe(r -> r.rememberMeServices(rememberMeServices()))
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .successHandler(myAuthenticationSuccessHandler())
