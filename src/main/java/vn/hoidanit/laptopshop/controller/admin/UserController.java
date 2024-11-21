@@ -79,10 +79,10 @@ public class UserController {
         }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        String hasdPassword = this.passwordEncoder.encode(createUser.getPassWord());
+        String hashPassword = this.passwordEncoder.encode(createUser.getPassWord());
 
         createUser.setAvatar(avatar);
-        createUser.setPassWord(hasdPassword);
+        createUser.setPassWord(hashPassword);
 
         Role roles = roleRepository.findByName(createUser.getRole().getName());
         createUser.setRole(roles);

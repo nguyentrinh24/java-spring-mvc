@@ -22,11 +22,11 @@ import vn.hoidanit.laptopshop.service.UploadService;
 @Controller
 public class ProductController {
     private final ProductService pService;
-    private final UploadService uService;
+    private final UploadService upService;
 
-    public ProductController(ProductService pService, UploadService uService) {
+    public ProductController(ProductService pService, UploadService upService) {
         this.pService = pService;
-        this.uService = uService;
+        this.upService = upService;
     }
 
     @GetMapping("admin/product")
@@ -48,22 +48,18 @@ public class ProductController {
     public String saveProduct(Model model,
             @Valid @ModelAttribute("productCreate") Product productCreate,
             BindingResult productBindingResult,
-            @RequestParam("hoidanitFile") MultipartFile file) {
+            @RequestParam("createImgProduct") MultipartFile file) {
 
+        // validate
         if (productBindingResult.hasErrors()) {
-            // Log validation errors, if any
-            for (FieldError error : productBindingResult.getFieldErrors()) {
-                System.out.println(error.getField() + " - " + error.getDefaultMessage());
-            }
-            return "admin/product/createProduct"; // Return to the creation form if validation fails
+            return "admin/product/create";
         }
 
-        // Handle file upload and set the product's image
-        String avatar = this.uService.handleSaveUploadFile(file, "product");
-        productCreate.setImage(avatar);
+        // upload image
+        String image = this.upService.handleSaveUploadFile(file, "product");
+        productCreate.setImage(image);
 
-        // Save the product
-        this.pService.saveProduct(productCreate, file);
+        this.pService.saveProduct(productCreate);
 
         return "redirect:/admin/product";
     }
@@ -115,14 +111,14 @@ public class ProductController {
             // Kiểm tra nếu file không rỗng (có ảnh mới được tải lên)
             if (!file.isEmpty()) {
                 // Lưu ảnh mới và lấy tên ảnh
-                String img = this.uService.handleSaveUploadFile(file, "product");
+                String img = this.upService.handleSaveUploadFile(file, "product");
 
                 // Cập nhật tên ảnh mới vào đối tượng Product
                 updateProduct.setImage(img);
             }
 
             // Lưu đối tượng Product với tên ảnh mới vào cơ sở dữ liệu
-            this.pService.saveProduct(productCreate, file);
+            this.pService.saveProduct(productCreate);
 
             return "redirect:/admin/product";
         } else {

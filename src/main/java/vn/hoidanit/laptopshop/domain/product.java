@@ -134,4 +134,11 @@ public class Product {
     public void setTarget(String target) {
         this.target = target;
     }
+
+    @Override
+    public String toString() {
+        return "Product [id=" + id + ", quantity=" + quantity + ", sold=" + sold + ", price=" + price + ", name=" + name
+                + ", image=" + image + ", detailDesc=" + detailDesc + ", shortDesc=" + shortDesc + ", factory="
+                + factory + ", target=" + target + "]";
+    }
 }

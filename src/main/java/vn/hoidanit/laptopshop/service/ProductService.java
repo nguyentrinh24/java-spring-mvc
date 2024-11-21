@@ -23,9 +23,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product saveProduct(Product product, MultipartFile file) {
-        String fileName = uploadService.handleSaveUploadFile(file, "products");
-        product.setImage(fileName); // Lưu tên file vào thuộc tính imageName
+    public Product saveProduct(Product product) {
+
         return productRepository.save(product);
     }
 
