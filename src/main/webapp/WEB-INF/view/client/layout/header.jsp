@@ -16,7 +16,6 @@
                         <div class="navbar-nav mx-auto">
                             <a href="index.html" class="nav-item nav-link active">Trang Chủ </a>
                             <a href="shop.html" class="nav-item nav-link">Sản Phẩm </a>
-                            <a href="contact.html" class="nav-item nav-link">Liên Hệ </a>
                         </div>
                         <div class="d-flex m-3 me-0">
                             <c:if test="${not empty pageContext.request.userPrincipal}">
@@ -35,7 +34,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end p-4" arialabelledby="dropdownMenuLink">
                                         <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
                                             <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
-                                                src="/client/img/hinh-anh-macbook-pro-14-inch-tgdd-1-2-3_1280x720-800-resize.jpg" />
+                                                src="/images/avatar/${sessionScope.avatar}" />
                                             <div class="text-center my-3">
 
 

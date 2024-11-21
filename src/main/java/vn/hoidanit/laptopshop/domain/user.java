@@ -31,8 +31,8 @@ public class User {
 
     @NotNull
 
-    @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
-    @StrongPassword(message = "mật khẩu phải dài hơn 8 kí tự")
+    // @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
+    // @StrongPassword(message = "mật khẩu phải dài hơn 8 kí tự")
     String passWord;
 
     @NotNull
@@ -43,11 +43,8 @@ public class User {
     @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
     String phone;
 
-    @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
     String address;
 
-    @NotNull
-    @NotEmpty(message = "Không được để trống trường này!")
     String avatar;
 
     // Mối quan hệ: nhiều user có thể có một role (ManyToOne)
