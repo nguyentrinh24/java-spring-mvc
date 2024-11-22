@@ -32,18 +32,29 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         if (session == null) {
             return;
         }
+
+        // Xóa thuộc tính lỗi xác thực
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-        // get email
+
+        // Lấy email của người dùng từ đối tượng Authentication
         String email = authentication.getName();
-        // query user
+
+        // Tìm thông tin người dùng từ email
         User user = this.userService.getUserByEmail(email);
         if (user != null) {
+            // Gắn thông tin người dùng vào session
             session.setAttribute("fullname", user.getFullName());
             session.setAttribute("avatar", user.getAvatar());
             session.setAttribute("id", user.getId());
             session.setAttribute("email", user.getEmail());
-        }
 
+            // Kiểm tra và lấy tổng số sản phẩm trong giỏ
+            int sum = 0;
+            if (user.getCart() != null) {
+                sum = user.getCart().getSum();
+            }
+            session.setAttribute("sum", sum);
+        }
     }
 
     protected String determineTargetUrl(final Authentication authentication) {

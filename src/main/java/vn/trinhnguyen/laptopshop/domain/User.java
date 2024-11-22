@@ -28,8 +28,6 @@ public class User {
     String email;
 
     @NotNull
-
-    @Size(min = 4, message = "trường này phải dài hơn 4 kí tự")
     @StrongPassword(message = "mật khẩu phải dài hơn 8 kí tự")
     String passWord;
 

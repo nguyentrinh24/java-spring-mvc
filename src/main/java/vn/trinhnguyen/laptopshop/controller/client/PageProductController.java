@@ -69,8 +69,13 @@ public class PageProductController {
         HttpSession session = request.getSession(false);
         Long idProduct = id;
         String email = (String) session.getAttribute("email");
-        this.pService.handleAddProductToCart(email, idProduct);
+        this.pService.handleAddProductToCart(email, idProduct, session);
         return "404";
+    }
+
+    @GetMapping("cart")
+    public String getMethodCart(Model model) {
+        return "client/cart/show";
     }
 
     @PostMapping("register")
