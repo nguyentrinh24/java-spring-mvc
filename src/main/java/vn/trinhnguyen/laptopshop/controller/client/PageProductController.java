@@ -22,6 +22,8 @@ import vn.trinhnguyen.laptopshop.service.UserService;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,8 +65,11 @@ public class PageProductController {
     }
 
     @PostMapping("product-add-to-cart/{id}")
-    public String postMethodCart(@PathVariable long id) {
-
+    public String postMethodCart(@PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        Long idProduct = id;
+        String email = (String) session.getAttribute("email");
+        this.pService.handleAddProductToCart(email, idProduct);
         return "404";
     }
 
