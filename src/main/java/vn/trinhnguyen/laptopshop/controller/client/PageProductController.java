@@ -1,5 +1,6 @@
 package vn.trinhnguyen.laptopshop.controller.client;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,6 +84,12 @@ public class PageProductController {
         currentUser.setId(id);
 
         Cart cart = this.pService.fetchByUser(currentUser);
+        if (cart == null) {
+            // Tạo 1 cart mới nếu rỗng
+            cart = new Cart();
+            cart.setCartDetails(new ArrayList<>());
+
+        }
         List<CartDetail> cartDetails = cart.getCartDetails();
 
         double totalPrice = 0;
