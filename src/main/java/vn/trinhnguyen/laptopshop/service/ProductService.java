@@ -3,6 +3,7 @@ package vn.trinhnguyen.laptopshop.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.tags.shaded.org.apache.regexp.recompile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -107,6 +108,10 @@ public class ProductService {
                 }
             }
         }
+    }
+
+    public Cart fetchByUser(User user) {
+        return this.cartRepository.findByUser(user);
     }
 
 }

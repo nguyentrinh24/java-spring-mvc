@@ -131,21 +131,22 @@
 
 
 
-    // Product Quantity
-    $('.quantity button').on('click', function () {
-        var button = $(this);
-        var oldValue = button.parent().parent().find('input').val();
-        if (button.hasClass('btn-plus')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        button.parent().parent().find('input').val(newVal);
+    // Xử lý sự kiện tăng/giảm số lượng
+    $(document).on('click', '.btn-plus', function () {
+        const input = $(this).closest('.quantity').find('input');
+        let value = parseInt(input.val());
+        input.val(value + 1);
     });
 
+    $(document).on('click', '.btn-minus', function () {
+        const input = $(this).closest('.quantity').find('input');
+        let value = parseInt(input.val());
+        if (value > 1) {
+            input.val(value - 1);
+        }
+    });
+
+
 })(jQuery);
+
 

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import vn.trinhnguyen.laptopshop.domain.Cart;
+import vn.trinhnguyen.laptopshop.domain.CartDetail;
 import vn.trinhnguyen.laptopshop.domain.Product;
 import vn.trinhnguyen.laptopshop.domain.Role;
 import vn.trinhnguyen.laptopshop.domain.User;
@@ -74,7 +76,21 @@ public class PageProductController {
     }
 
     @GetMapping("cart")
-    public String getMethodCart(Model model) {
+    public String getMethodCart(Model model, HttpServletRequest request) {
+        User currentUser = new User();
+        HttpSession serSession = request.getSession(false);
+        long id = (long) serSession.getAttribute("id"); // lấy id của người dùng từ session
+        currentUser.setId(id);
+
+        Cart cart = this.pService.fetchByUser(currentUser);
+        List<CartDetail> cartDetails = cart.getCartDetails();
+
+        double totalPrice = 0;
+        for (CartDetail cartDetail : cartDetails) {
+            totalPrice += cartDetail.getPrice() * cartDetail.getQuantity();
+        }
+        model.addAttribute("cartDetails", cartDetails);
+        model.addAttribute("totalPrice", totalPrice);
         return "client/cart/show";
     }
 
