@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.tags.shaded.org.apache.regexp.recompile;
+import org.springframework.expression.spel.ast.OpInc;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -114,4 +115,25 @@ public class ProductService {
         return this.cartRepository.findByUser(user);
     }
 
+    public void handleCartRemove(long id, HttpSession serSession) {
+        Optional<CartDetail> cartDetailOptional = this.cartDetailRepository.findById(id);
+        if (cartDetailOptional.isPresent()) {
+            CartDetail currentcartDetail = cartDetailOptional.get();
+            Cart cart = currentcartDetail.getCart();
+
+            this.cartDetailRepository.deleteById(id);
+            if (cart.getSum() > 1) {
+                // update cart
+                int sum = cart.getSum() - 1;
+                cart.setSum(sum);
+                serSession.setAttribute("sum", sum);
+                this.cartRepository.save(cart);
+            } else {
+                // xoa cart == 1
+                this.cartDetailRepository.deleteById(id);
+                serSession.setAttribute("sum", 0);
+            }
+        }
+
+    }
 }

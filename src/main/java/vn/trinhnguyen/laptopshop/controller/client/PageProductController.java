@@ -101,6 +101,14 @@ public class PageProductController {
         return "client/cart/show";
     }
 
+    @PostMapping("delete-cart-product/{id}")
+    public String postMethodName(Model model, HttpServletRequest request, @PathVariable long id) {
+        HttpSession serSession = request.getSession(false);
+        long cartDetailId = id;
+        this.pService.handleCartRemove(cartDetailId, serSession);
+        return "redirect:/cart";
+    }
+
     @PostMapping("register")
     public String postRegister(Model model,
             @ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,

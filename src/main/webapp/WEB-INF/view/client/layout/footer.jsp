@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-lg-6">
                         </div>
-                        <!-- <div class="col-lg-3">
+                        <div class="col-lg-3">
                             <div class="d-flex justify-content-end pt-3">
                                 <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i
                                         class="fab fa-twitter"></i></a>
@@ -24,7 +24,7 @@
                                 <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i
                                         class="fab fa-linkedin-in"></i></a>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="row g-5">
