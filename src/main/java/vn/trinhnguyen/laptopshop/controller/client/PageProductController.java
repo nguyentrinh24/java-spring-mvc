@@ -73,7 +73,7 @@ public class PageProductController {
         Long idProduct = id;
         String email = (String) session.getAttribute("email");
         this.pService.handleAddProductToCart(email, idProduct, session);
-        return "404";
+        return "redirect:/";
     }
 
     @GetMapping("cart")
