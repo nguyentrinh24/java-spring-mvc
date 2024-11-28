@@ -31,7 +31,7 @@ public class webMvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("/admin/**").addResourceLocations("/resources/admin/");
-        // registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/client/**").addResourceLocations("/resources/client/");
         registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
         registry.addResourceHandler("/auth/**").addResourceLocations("/client/auth/");

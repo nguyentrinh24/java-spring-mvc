@@ -118,7 +118,7 @@
         $('.btn-play').click(function () {
             $videoSrc = $(this).data("src");
         });
-        console.log($videoSrc);
+        //console.log($videoSrc);
 
         $('#videoModal').on('shown.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
@@ -148,14 +148,12 @@
     // });
     $('.quantity button').on('click', function () {
         let change = 0;
-        console.log(1)
+
         var button = $(this);
         var oldValue = button.parent().parent().find('input').val();
-        console.log(oldValue)
         if (button.hasClass('btn-plus')) {
             var newVal = parseFloat(oldValue) + 1;
             change = 1;
-
         } else {
             if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
@@ -164,9 +162,15 @@
                 newVal = 1;
             }
         }
-
         const input = button.parent().parent().find('input');
         input.val(newVal);
+
+        //set form index
+        const index = input.attr("data-cart-detail-index")
+        const el = document.getElementById(`cartDetails${index}.quantity`);
+        $(el).val(newVal);
+
+
 
         //get price
         const price = input.attr("data-cart-detail-price");

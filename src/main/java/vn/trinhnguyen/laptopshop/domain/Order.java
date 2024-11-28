@@ -19,7 +19,61 @@ public class Order {
     private long id;
 
     private double totalPrice;
+    private String receiverName;
 
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public String getReceiverAddress() {
+        return receiverAddress;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
+    }
+
+    public String getReceiverPhone() {
+        return receiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public Set<Order_details> getOrders_details() {
+        return orders_details;
+    }
+
+    public void setOrders_details(Set<Order_details> orders_details) {
+        this.orders_details = orders_details;
+    }
+
+    private String receiverAddress;
+
+    private String receiverPhone;
+
+    private String status;
     // Mối quan hệ: nhiều order thuộc về một user (ManyToOne)
     @ManyToOne
     @JoinColumn(name = "users_id") // Chỉ định cột khóa ngoại `users_id` trong bảng `orders`
