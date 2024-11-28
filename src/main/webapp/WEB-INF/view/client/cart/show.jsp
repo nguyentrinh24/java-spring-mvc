@@ -261,7 +261,7 @@
                 <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
 
                 <!-- Template Javascript -->
-                <script src="/client/js/main_fix.js"></script>
+                <script src="/client/js/main.js"></script>
             </body>
 
             </html>

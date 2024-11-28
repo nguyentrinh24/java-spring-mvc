@@ -22,15 +22,10 @@ import vn.trinhnguyen.laptopshop.domain.DTO.RegisterDTO;
 import vn.trinhnguyen.laptopshop.repository.RoleRepository;
 import vn.trinhnguyen.laptopshop.service.ProductService;
 import vn.trinhnguyen.laptopshop.service.UserService;
-
-import org.springframework.web.bind.annotation.RequestParam;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class PageProductController {
